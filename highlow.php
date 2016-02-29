@@ -7,11 +7,22 @@
 // 	fwrite(STDOUT, ($randomNum > $userGuess) ? "My number is HIGHER than yours\n" : "My number is LOWER than what your picked\n");
 // }
 
-$randomNum = mt_rand(1, 100);
+$randomNum1 = null;
+$randomNum2 = null;
+
+if($argc >= 3) {
+	if((is_numeric($argv[1])) && (is_numeric($argv[2]))) {
+		$randomNum1 = $argv[1];
+		$randomNum2 = $argv[2];
+	}
+}
+
+$randomNum = mt_rand($randomNum1, $randomNum2);
 $userGuess = null;
-fwrite(STDOUT, ("Guess a number from 1-100? \n"));
+
 
 while($randomNum != $userGuess) {
+	fwrite(STDOUT, ("Guess a number from 1-100? \n"));
 	$userGuess = fgets(STDIN);
 	if($randomNum == $userGuess) {
 		fwrite(STDOUT, "Great guess, {$userGuess}!\n");
